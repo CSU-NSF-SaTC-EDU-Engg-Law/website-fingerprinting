@@ -12,10 +12,10 @@ For this experiment, Tor is required. It can be installed by running the followi
 sudo apt install jq tor lynx
 
 # For Fedora
-sudo yum install tor lynx
+sudo yum install jq tor lynx
 
 # For ArchLinux
-sudo pacman -S tor torsocks lynx
+sudo pacman -S jq tor torsocks lynx
 ```
 
 By installing Tor we also get a program called `torsocks`; this program will be used to redirect traffic of common programs through the Tor network. For example, it can be run as follows:
