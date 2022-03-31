@@ -17,7 +17,7 @@ jq -r .pcaps[] ./config.json | while IFS= read -r domain; do
 		./capture.sh $domain lynx &
 
 		# start lynx in xterm and timeout after 20 sec
-		timeout 20 xterm -e lynx -accept_all_cookies https://$domain/
+		timeout 20 xterm -e torsocks lynx -accept_all_cookies https://$domain/
 
 		# kill tcpdump
 		tcpdump_pid=$(pidof tcpdump)
