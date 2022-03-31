@@ -15,7 +15,7 @@ elif os.path.exists('config.json') == False:
     print("No configuration found")
     sys.exit(1)
 
-elif os.path.exists('./classifier-nb.dmp') == False:
+elif os.path.exists('./classifier/classifier-nb.dmp') == False:
     print("No classifier dump found; train first")
     sys.exit(1)
 
@@ -46,7 +46,7 @@ with open('config.json') as fp:
 print("Loading the classifier...")
 
 # Try to read the classifier.
-classifier = load("./classifier-nb.dmp")
+classifier = load("./classifier/classifier-nb.dmp")
 i = 0
 right = 0
 wrong = 0
