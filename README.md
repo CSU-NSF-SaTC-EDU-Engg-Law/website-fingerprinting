@@ -8,8 +8,8 @@ For this experiment, Tor is required. It can be installed by running the followi
 
 
 ``` bash
-# For Debian or Ubuntu
-sudo apt install tor lynx
+# For Debian based distributions
+sudo apt install jq tor lynx
 
 # For Fedora
 sudo yum install tor lynx
@@ -33,15 +33,15 @@ torsocks curl -L http://httpbin.org/ip
 ## Required Python 3 Modules
 
 ``` bash
-pip install sklearn dpkt joblib
+python3 -m pip install sklearn dpkt joblib
 ```
 
 ## Data Collection
 
-For the data collection process two terminal windows in a side-by-side orientation are required, as this process is fairly manual. Also, it's advised to collect the fingerprints in a VM, in order to avoid caputring any unintended traffic. To listen on traffic there exists a script, namely [capture.sh](pcaps/capture.sh), which should be run in one of the terminals:
+For the data collection process two terminal windows in a side-by-side orientation are required, as this process is fairly manual. Also, it's advised to collect the fingerprints in a VM, in order to avoid caputring any unintended traffic. To listen on traffic there exists a script, namely [capture.sh](./capture.sh), which should be run in one of the terminals:
 
 ``` bash
-./pcaps/capture.sh duckduckgo.com
+./capture.sh duckduckgo.com
 ```
 
 Once the listener is capturing traffic, on the next terminal run:
@@ -51,6 +51,14 @@ torsocks lynx https://duckduckgo.com
 ```
 
 Once the website has finished loading, the capture process needs to be killed, along with the browser session (by hitting the `q` key twice). The process should be repeated several times for each web page so that there is enough data.
+
+## Mass Data Collection
+
+A bash scipt is provided to do a mass capture of website traffic, [mass-capture.sh](./mass-capture.sh). This differes from the above method in that it will automate the capturing process and reduce it to a single terminal session. mass-capture.sh will listen for traffic in the background and browse to the corresponding website by launching an instance of lynx. After 20 seconds, both are killed and the script moves on to the next capture. The script takes a single argument, the number of desired captures per domain. It should be run in the following way:
+
+``` bash
+./mass-capture.sh 15
+```
 
 ## Machine Learning
 
@@ -75,8 +83,6 @@ It is worth noting that from each sample only the first 40 packets will be used 
 </p>
 
 As can be seen in the screenshot above, the patterns of the packets of each website can be seen clearly on a 3D scale. The classifier visualizes the data in a similar way and gives us the most accurate result.
-
-An interactive version of this graph can be found in the [graphs](graphs) folder.
 
 ## Limitations and Disclaimers
 
