@@ -78,12 +78,6 @@ Once the training is done, and the `classifier-nb.dmp` is created, the [predict.
 
 It is worth noting that from each sample only the first 40 packets will be used to train a usable model and to run through the resulting classifier.
 
-<p align="center">
-    <img src="graphs/graph-screenshot.png" alt="Visualizing the patterns" />
-</p>
-
-As can be seen in the screenshot above, the patterns of the packets of each website can be seen clearly on a 3D scale. The classifier visualizes the data in a similar way and gives us the most accurate result.
-
 ## Limitations and Disclaimers
 
 This setup was created in order to research the topic of website fingerprinting and how easy it is to attempt to deanonymize users over Tor or VPNs. Traffic was captured and identified in a private setting and for purely academic purposes; the use of this source code is intended for those reasons only.
