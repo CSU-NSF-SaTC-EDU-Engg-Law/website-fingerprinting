@@ -11,14 +11,14 @@ from joblib import dump
 def empty_csv():
     """ Empties the CSV file. """
 
-    with open("./fingerprints.csv", 'w') as f:
+    with open("./classifier/fingerprints.csv", 'w') as f:
         f.write("")
 
 
 def append_to_csv(domain, data):
     """ Append the information to the log file. """
 
-    with open("./fingerprints.csv", 'a') as f:
+    with open("./classifier/fingerprints.csv", 'a') as f:
         f.write("{},{}\n".format(domain, ','.join(str(num) for num in data)))
 
 
@@ -177,7 +177,7 @@ def train(streams, labels):
     clf = clf.fit(training_x, training_y)
 
     # Save a snapshot of this classifier.
-    dump(clf, "./classifier-nb.dmp", compress=9)
+    dump(clf, "./classifier/classifier-nb.dmp", compress=9)
 
     # Get the prediction.
     predictions = clf.predict(testing_x)
