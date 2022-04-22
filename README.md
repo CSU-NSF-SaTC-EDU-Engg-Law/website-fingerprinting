@@ -1,33 +1,21 @@
 # Website Fingerprinting
 
-Website fingerprinting is a method of Tor or VPN packet inspection that aims to collect enough features and information from individual sessions that could aid in identifying the activity of anonymized users.
+Website fingerprinting is a method of passive traffic analysis that aims to collect enough features and information from individual sessions that could aid in identifying the activity of anonymized users.
 
 ## Introduction
 
-For this experiment, Tor is required. It can be installed by running the following commands:
+Installing Dependencies:
 
 
 ``` bash
 # For Debian based distributions
-sudo apt install jq tor lynx
+sudo apt install jq lynx
 
 # For Fedora
-sudo yum install jq tor lynx
+sudo yum install jq lynx
 
 # For ArchLinux
-sudo pacman -S jq tor torsocks lynx
-```
-
-By installing Tor we also get a program called `torsocks`; this program will be used to redirect traffic of common programs through the Tor network. For example, it can be run as follows:
-
-``` bash
-# SSH through Tor.
-torsocks ssh user@example.com
-
-# CUrl through Tor.
-torsocks curl -L http://httpbin.org/ip
-
-# Etc...
+sudo pacman -S jq lynx
 ```
 
 ## Required Python 3 Modules
@@ -47,7 +35,7 @@ For the data collection process two terminal windows in a side-by-side orientati
 Once the listener is capturing traffic, on the next terminal run:
 
 ``` bash
-torsocks lynx https://duckduckgo.com
+lynx https://duckduckgo.com
 ```
 
 Once the website has finished loading, the capture process needs to be killed, along with the browser session (by hitting the `q` key twice). The process should be repeated several times for each web page so that there is enough data.
